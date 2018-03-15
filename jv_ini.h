@@ -1,25 +1,25 @@
 #ifndef _JV_INI_H_INCLUDE_
 #define _JV_INI_H_INCLUDE_
 
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
-#define  JV_OK          0
-#define  JV_ERROR      -1
+#define JV_OK 0
+#define JV_ERROR -1
 
 #define jv_memzero(buf, n) (void *) memset(buf, 0, n)
 
 #ifndef intptr_t
-#define intptr_t    long
-#define uintptr_t   unsigned long
+#define intptr_t long
+#define uintptr_t unsigned long
 #endif
 
 typedef intptr_t jv_int_t;
 typedef uintptr_t jv_uint_t;
 
-typedef unsigned char  u_char;
+typedef unsigned char u_char;
 
 typedef struct jv_string_s jv_string_t;
 

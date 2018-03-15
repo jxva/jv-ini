@@ -24,7 +24,7 @@ static jv_int_t jv_parser_until(FILE *fp, u_char *buffer, size_t size, u_char *d
       u_char *s = delims;
 
       while ((d = *s++) != '\0') {
-        if (c == d && string !=1) {
+        if (c == d && string != 1) {
           buffer[i] = '\0';
           if (d == '=' || d == ':')
             ungetc(c, fp);
@@ -37,7 +37,6 @@ static jv_int_t jv_parser_until(FILE *fp, u_char *buffer, size_t size, u_char *d
   buffer[i] = '\0';
   return JV_ERROR;
 }
-
 
 jv_int_t jv_ini_load(FILE *fp, jv_int_t (*callback)(jv_string_t *section, jv_string_t *key, jv_string_t *value)) {
   int c;
@@ -69,7 +68,7 @@ jv_int_t jv_ini_load(FILE *fp, jv_int_t (*callback)(jv_string_t *section, jv_str
         if (r == JV_ERROR)
           return JV_ERROR;
         scope = 1;
-		section.data = section_buf;
+        section.data = section_buf;
         section.len = r;
         break;
       }
@@ -79,14 +78,14 @@ jv_int_t jv_ini_load(FILE *fp, jv_int_t (*callback)(jv_string_t *section, jv_str
         if (r == JV_ERROR)
           return JV_ERROR;
 
-		value.data = value_buf;
+        value.data = value_buf;
         value.len = r;
-		if(scope==0) {
-			jv_string_t null={.len=0,.data=NULL};
-			r = callback(&null, &key, &value);
-		} else {
-			r = callback(&section, &key, &value);
-		}
+        if (scope == 0) {
+          jv_string_t null = {0, NULL};
+          r = callback(&null, &key, &value);
+        } else {
+          r = callback(&section, &key, &value);
+        }
 
         if (r == JV_ERROR)
           return JV_ERROR;
@@ -102,7 +101,7 @@ jv_int_t jv_ini_load(FILE *fp, jv_int_t (*callback)(jv_string_t *section, jv_str
         r = jv_parser_until(fp, key_buf, BUFFER_SIZE, (u_char *) "=:");
         if (r == JV_ERROR)
           return JV_ERROR;
-		key.data = key_buf;
+        key.data = key_buf;
         key.len = r;
         break;
     }
