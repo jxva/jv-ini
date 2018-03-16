@@ -9,8 +9,6 @@
 
 jv_ini_main
 
-.vscode/
-
 bin/
 obj/
 
